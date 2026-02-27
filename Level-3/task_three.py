@@ -3,6 +3,17 @@ Note: Do not add ANY variables to the global scope. This WILL break the tests.
 """
 
 
+def get_both_VAT(total_price_string: str) -> tuple[str, str]:
+    """Returns tuple of VAT and Total inc VAT as strings. Expects string."""
+    try:
+        total_price = float(total_price_string)
+        vat_add_on = total_price * 0.20
+        vat_included = total_price + vat_add_on
+        return str(vat_add_on), str(vat_included)
+    except:
+        raise "WRONG VALUE TYPE INPUT TO VAT CALCULATOR"
+
+
 def generate_invoice(receipt_string: str) -> str:
     """Returns a formatted version of receipt_string, with VAT calculation included."""
     if not receipt_string:
@@ -15,13 +26,17 @@ def generate_invoice(receipt_string: str) -> str:
         print(line, "and", line[:6])
         # If first word of line is Total:
         if line[:6] == "Total:":
+            #   Search the line for the total price: i.e. everything after £ on that line
             total_price = line[-4:]
             print(total_price)
-            invoice_string += "\n" + line + "\n"
             #   Add new line to make a gap before total line displayed
-            #   Search the line for the total price: i.e. everything after £ on that line
+            invoice_string += "\n" + line + "\n"
             # Convert the price to float, calculate VAT
             # Add -added- VAT and Total inc VAT as two lines on the end.
+            added_VAT, total_with_VAT = get_both_VAT(total_price)
+            vat = f"VAT: £{added_VAT}\n"
+            total_inc_vat = f"Total inc VAT: £{total_with_VAT}\n"
+            invoice_string += vat + total_inc_vat
         else:
             invoice_string += line + "\n"
     print("\nInvoice string!!!:")
