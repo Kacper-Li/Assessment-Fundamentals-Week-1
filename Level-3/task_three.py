@@ -34,15 +34,18 @@ def generate_invoice(receipt_string: str) -> str:
     receipt_lines = receipt_string.split("\n")
     invoice_string = "VAT RECEIPT\n\n"
     for line in receipt_lines:
+        pound_index = line.rfind('£')
+        line_without_price = line[:pound_index + 1]
+        price = line[pound_index + 1:]
+
         if line[:6] == "Total:":
-            total_price = line[-4:]
-            original_total, vat = get_both_VAT(total_price)
-            invoice_string += "\n" + original_total
-            invoice_string += vat
-            invoice_string += f"Total inc VAT: £{total_price}"
+            invoice_string += "\n"
+            original_total, vat = get_both_VAT(price)
+            invoice_string += original_total + vat
+            invoice_string += f"Total inc VAT: £{price}"
         else:
-            line_price_adjusted = line[:-4] + get_original_price(line[-4:])
-            invoice_string += line_price_adjusted + "\n"
+            line_adjusted = line_without_price + get_original_price(price)
+            invoice_string += line_adjusted + "\n"
     return invoice_string  # return the invoice string
 
 
