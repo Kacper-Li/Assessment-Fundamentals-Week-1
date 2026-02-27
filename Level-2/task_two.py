@@ -5,8 +5,7 @@ The only variable you are allowed to use in the global scope is the basket below
 
 basket = []
 item_count = {
-    # "name": "name",
-    # "count": 0
+    # "name": 0
 }
 
 #####
@@ -19,9 +18,11 @@ item_count = {
 def add_to_basket(item: dict) -> list:
     """Return basket list with item appended."""
     if item in basket:
-        item_count[item['name']] += 1
+        print("Copy add")
+        item_count[item['name'], item['price']] += 1
+        print(f"{item_count}")
     else:
-        item_count[item['name']] = 1
+        item_count[item['name'], item['price']] = 1
         basket.append(item)
     return basket
 
@@ -31,8 +32,10 @@ def generate_receipt(basket: list) -> str:
     if basket != []:
         total = 0.00
         receipt = ""
+        print(item_count)
         for item in basket:
-            number_of_item = item_count[item['name']]
+            number_of_item = item_count[item['name'], item['price']]
+            print(f"number of {item} is {number_of_item}")
             price_of_item = item['price']
             collective_price = price_of_item * number_of_item
             total += collective_price
@@ -72,4 +75,5 @@ if __name__ == "__main__":
         "name": "Butter",
         "price": 1.20
     })
+    print(f"basket: {basket}\n\n")
     print(generate_receipt(basket))
