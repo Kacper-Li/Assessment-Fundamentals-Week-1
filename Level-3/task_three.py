@@ -30,20 +30,22 @@ def generate_invoice(receipt_string: str) -> str:
     """Returns a formatted version of receipt_string, with VAT calculation included."""
     if not receipt_string:
         return "Receipt was empty"
-    # Read line by line
     receipt_lines = receipt_string.split("\n")
     invoice_string = "VAT RECEIPT\n\n"
+    any_items_found = 0
     for line in receipt_lines:
         pound_index = line.rfind('£')
         line_without_price = line[:pound_index + 1]
         price = line[pound_index + 1:]
 
         if line[:6] == "Total:":
-            invoice_string += "\n"
+            if any_items_found:
+                invoice_string += "\n"
             original_total, vat = get_both_VAT(price)
             invoice_string += original_total + vat
             invoice_string += f"Total inc VAT: £{price}"
         else:
+            any_items_found = 1
             line_adjusted = line_without_price + get_original_price(price)
             invoice_string += line_adjusted + "\n"
     return invoice_string  # return the invoice string
@@ -54,4 +56,7 @@ if __name__ == "__main__":
 Milk x 1 - £0.80
 Butter x 1 - £1.20
 Total: £5.60"""
+    print(generate_invoice(receipt_string))
+    print("--------------------------------------------")
+    receipt_string = """Total: £0.00"""
     print(generate_invoice(receipt_string))
