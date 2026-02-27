@@ -13,9 +13,11 @@ Level-1/task_one.py:10:0: C0116: Missing function or method docstring (missing-f
 Level-1/task_one.py:15:0: C0116: Missing function or method docstring (missing-function-docstring)
 Level-1/task_one.py:15:21: W0621: Redefining name 'basket' from outer scope (line 7) (redefined-outer-name)
 ************* Module task_three
-Level-3/task_three.py:6:21: W0621: Redefining name 'receipt_string' from outer scope (line 20) (redefined-outer-name)
-Level-3/task_three.py:20:4: C0103: Constant name "receipt_string" doesn't conform to UPPER_CASE naming style (invalid-name)
+Level-3/task_three.py:6:21: W0621: Redefining name 'receipt_string' from outer scope (line 32) (redefined-outer-name)
+Level-3/task_three.py:13:4: C0103: Variable name "VAT_price" doesn't conform to snake_case naming style (invalid-name)
+Level-3/task_three.py:13:4: W0612: Unused variable 'VAT_price' (unused-variable)
+Level-3/task_three.py:32:4: C0103: Constant name "receipt_string" doesn't conform to UPPER_CASE naming style (invalid-name)
 
 ------------------------------------------------------------------
-Your code has been rated at 9.17/10 (previous run: 9.17/10, +0.00)
+Your code has been rated at 9.01/10 (previous run: 9.01/10, +0.00)
 
