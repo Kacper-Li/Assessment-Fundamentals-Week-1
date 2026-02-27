@@ -16,33 +16,31 @@ item_count = {
 
 
 def add_to_basket(item: dict) -> list:
-    """Return basket list with item appended."""
+    """Return basket list with unique item appended.\n
+    Duplicates increase tracked count in item_count dict"""
     if item in basket:
-        print("Copy add")
         item_count[item['name'], item['price']] += 1
-        print(f"{item_count}")
     else:
         item_count[item['name'], item['price']] = 1
         basket.append(item)
     return basket
 
 
-def generate_receipt(basket: list) -> str:
-    """Returns a built string of each item in the basket."""
-    if basket != []:
+def generate_receipt(basket_given: list) -> str:
+    """Returns a built string of each item in the basket_given."""
+    if basket_given != []:
         total = 0.00
         receipt = ""
-        print(item_count)
-        for item in basket:
+        for item in basket_given:
             number_of_item = item_count[item['name'], item['price']]
-            print(f"number of {item} is {number_of_item}")
             price_of_item = item['price']
             collective_price = price_of_item * number_of_item
             total += collective_price
+
             if item['price'] == 0.00:
-                receipt += f"{item['name']} - Free\n"
+                receipt += f"{item['name']} x {number_of_item} - Free\n"
             else:
-                receipt += f"{item['name']} - £{collective_price:.2f}\n"
+                receipt += f"{item['name']} x {number_of_item} - £{collective_price:.2f}\n"
         receipt += f"Total: £{total:.2f}"
         return receipt
     return "Basket is empty"  # return the receipt string
