@@ -13,7 +13,7 @@ Level-1/task_one.py:10:0: C0116: Missing function or method docstring (missing-f
 Level-1/task_one.py:15:0: C0116: Missing function or method docstring (missing-function-docstring)
 Level-1/task_one.py:15:21: W0621: Redefining name 'basket' from outer scope (line 7) (redefined-outer-name)
 ************* Module task_two
-Level-2/task_two.py:29:21: W0621: Redefining name 'basket' from outer scope (line 6) (redefined-outer-name)
+Level-2/task_two.py:30:21: W0621: Redefining name 'basket' from outer scope (line 6) (redefined-outer-name)
 ************* Module task_three
 Level-3/task_three.py:6:0: C0116: Missing function or method docstring (missing-function-docstring)
 Level-3/task_three.py:6:21: W0621: Redefining name 'receipt_string' from outer scope (line 12) (redefined-outer-name)
@@ -21,5 +21,5 @@ Level-3/task_three.py:6:21: W0613: Unused argument 'receipt_string' (unused-argu
 Level-3/task_three.py:12:4: C0103: Constant name "receipt_string" doesn't conform to UPPER_CASE naming style (invalid-name)
 
 ------------------------------------------------------------------
-Your code has been rated at 8.57/10 (previous run: 8.57/10, +0.00)
+Your code has been rated at 8.69/10 (previous run: 8.69/10, +0.00)
 
